@@ -22,12 +22,18 @@ namespace HideUI
     public class ModLoad : LoadingExtensionBase
     {
 
+        private HideUI hideUI;
+
         public override void OnLevelLoaded(LoadMode mode)
         {
-            var gameObject = new GameObject();
-            gameObject.AddComponent<HideUI>();
+            var cameraController = GameObject.FindObjectOfType<CameraController>();
+            hideUI = cameraController.gameObject.AddComponent<HideUI>();
         }
 
+        public override void OnLevelUnloading()
+        {
+            GameObject.Destroy(hideUI);
+        }
     }
 
 }

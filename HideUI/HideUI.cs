@@ -7,6 +7,14 @@ namespace HideUI
 
         private bool uiHidden = false;
 
+        void OnDestroy()
+        {
+            if (uiHidden)
+            {
+                Show();
+            }
+        }
+
         void Hide()
         {
             var cameraController = GameObject.FindObjectOfType<CameraController>();
